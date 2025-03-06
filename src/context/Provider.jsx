@@ -22,6 +22,31 @@ export default function Provider({ children }) {
             })
 
     }, [])
+
+    useEffect(() => {
+        //check the token in localstorage
+        const token = localStorage.getItem("token")
+        if (token) {
+            fetch("http://localhost:5000/users/verifytoken",
+                {
+                    method: "GET",
+                    headers: { "token": token }
+                })
+                .then(res => {
+                    console.log(res)
+                    return res.json()
+                })
+                .then(result => {
+                    if (result.success) {
+                        setUser(result.data)
+                    } else {
+                        alert(result.message)
+                    }
+                })
+        }
+    }, [])
+
+
     return (
 
         <MyContext.Provider value={{ user, setUser, products, setProducts, cart, setCart }}>

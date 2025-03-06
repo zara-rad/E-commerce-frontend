@@ -1,9 +1,13 @@
-
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { MyContext } from "../context/context"; // Import your context
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { cart } = useContext(MyContext); // Access the cart from context
+
+    // Calculate total number of items in the cart
+    const totalItemsInCart = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
         <nav className="bg-gray-800">
@@ -51,8 +55,27 @@ export default function Navbar() {
                             <NavLink to="/register" className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 hover:text-white">
                                 Register
                             </NavLink>
-                            <NavLink to="/cart" className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 hover:text-white">
-                                Cart
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    className="text-sm px-4 py-2 rounded-md text-gray-900 border-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+
+                            {/* Cart Icon with Item Count */}
+                            <NavLink to="/cart" className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 hover:text-white relative">
+                                <img
+                                    src="https://cdn-icons-png.flaticon.com/512/3225/3225209.png"
+                                    width="30"
+                                    alt="Cart"
+                                />
+                                {/* Display number of items in cart if greater than 0 */}
+                                {totalItemsInCart > 0 && (
+                                    <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-2 py-1">
+                                        {totalItemsInCart}
+                                    </span>
+                                )}
                             </NavLink>
                         </div>
                     </div>
@@ -75,8 +98,20 @@ export default function Navbar() {
                         <NavLink to="/register" className="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
                             Register
                         </NavLink>
-                        <NavLink to="/cart" className="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">
-                            Cart
+
+                        {/* Cart Icon with Item Count in Mobile Menu */}
+                        <NavLink to="/cart" className="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white rounded-md relative">
+                            <img
+                                src="https://cdn-icons-png.flaticon.com/512/3225/3225209.png"
+                                width="30"
+                                alt="Cart"
+                            />
+                            {/* Display number of items in cart if greater than 0 */}
+                            {totalItemsInCart > 0 && (
+                                <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-2 py-1">
+                                    {totalItemsInCart}
+                                </span>
+                            )}
                         </NavLink>
                     </div>
                 </div>

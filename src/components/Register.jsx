@@ -1,14 +1,15 @@
-import React from 'react'
+/* import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Register() {
+    const navigate = useNavigate()
     const registerUser = (e) => {
         e.preventDefault()
         const user = {
             first_name: e.target.first_name.value,
             last_name: e.target.last_name.value,
             email: e.target.email.value,
-            password: e.target.password.value,
-
+            password: e.target.password.value
         }
         fetch("http://localhost:5000/users", {
             method: "POST",
@@ -18,136 +19,133 @@ export default function Register() {
             .then(res => res.json())
             .then(result => {
                 console.log(result)
+                if (result.success) {
+                    navigate("/login")
+                }
             })
+
     }
     return (
         <div>
-            {/*  <h1>Register Page</h1>
+            <h1>This is Register Component</h1>
             <form onSubmit={registerUser}>
                 <label>First Name: <input type="text" name="first_name" /></label><br />
-                <label>LastName: <input type="text" name="last_name" /></label><br />
+                <label>Last Name: <input type="text" name="last_name" /></label><br />
                 <label>Email: <input type="email" name="email" /></label><br />
-                <label>Password: <input type="password" name="password" /></label><br />
-                 <input type="file" name='profile_image' /><br />
-                <button>Register</button>
+                <label>Passowrd: <input type="password" name="password" /></label><br />
+                <input type="file" name="profile_image" /><br />
+                <button>register</button>
 
-
-            </form> */}
-
-
-            <section class="bg-white">
-                <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
-
-                    <main
-                        class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
-                    >
-                        <div class="max-w-xl lg:max-w-3xl">
-                            <h1 class="flex items-center justify-center text-l font-bold text-black-900">Wellcome to our registration page</h1>
-
-                            <form action="#" class="mt-8 grid grid-cols-6 gap-6">
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="FirstName" class="block text-sm font-medium text-gray-700">
-                                        First Name
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="FirstName"
-                                        name="first_name"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-                                    />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="LastName" class="block text-sm font-medium text-gray-700">
-                                        Last Name
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="LastName"
-                                        name="last_name"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-                                    />
-                                </div>
-
-                                <div class="col-span-6">
-                                    <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
-
-                                    <input
-                                        type="email"
-                                        id="Email"
-                                        name="email"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-                                    />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
-
-                                    <input
-                                        type="password"
-                                        id="Password"
-                                        name="password"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-                                    />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="PasswordConfirmation" class="block text-sm font-medium text-gray-700">
-                                        Password Confirmation
-                                    </label>
-
-                                    <input
-                                        type="password"
-                                        id="PasswordConfirmation"
-                                        name="password_confirmation"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xs"
-                                    />
-                                </div>
-
-                                <div class="col-span-6">
-                                    <label for="MarketingAccept" class="flex gap-4">
-                                        <input
-                                            type="checkbox"
-                                            id="MarketingAccept"
-                                            name="marketing_accept"
-                                            class="size-5 rounded-md border-gray-200 bg-white shadow-xs"
-                                        />
-
-                                        <span class="text-sm text-gray-700">
-                                            I want to receive emails about events, product updates and company announcements.
-                                        </span>
-                                    </label>
-                                </div>
-
-                                <div class="col-span-6">
-                                    <p class="text-sm text-gray-500">
-                                        By creating an account, you agree to our
-                                        <a href="#" class="text-gray-700 underline"> terms and conditions </a>
-                                        and
-                                        <a href="#" class="text-gray-700 underline">privacy policy</a>.
-                                    </p>
-                                </div>
-
-                                <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                                    <button
-                                        class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:ring-3 focus:outline-hidden"
-                                    >
-                                        Create an account
-                                    </button>
-
-                                    <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                                        Already have an account?
-                                        <a href="#" class="text-gray-700 underline">Log in</a>.
-                                    </p>
-                                </div>
-                            </form>
-                        </div>
-                    </main>
-                </div>
-            </section>
-
+            </form>
         </div>
     )
+}
+ */
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export default function Register() {
+    const navigate = useNavigate();
+
+    const registerUser = (e) => {
+        e.preventDefault();
+        const user = {
+            first_name: e.target.first_name.value,
+            last_name: e.target.last_name.value,
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
+
+        fetch("http://localhost:5000/users", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: { "content-type": "application/json" }
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                if (result.success) {
+                    navigate("/login");
+                }
+            });
+    };
+
+    return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center py-6 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
+                <h2 className="text-center text-2xl font-extrabold text-gray-900">Register</h2>
+                <form onSubmit={registerUser} className="space-y-4">
+                    {/* First Name */}
+                    <div>
+                        <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">First Name</label>
+                        <input
+                            type="text"
+                            name="first_name"
+                            id="first_name"
+                            required
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                    </div>
+
+                    {/* Last Name */}
+                    <div>
+                        <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input
+                            type="text"
+                            name="last_name"
+                            id="last_name"
+                            required
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            required
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            required
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        />
+                    </div>
+
+                    {/* Profile Image */}
+                    <div>
+                        <label htmlFor="profile_image" className="block text-sm font-medium text-gray-700">Profile Image</label>
+                        <input
+                            type="file"
+                            name="profile_image"
+                            id="profile_image"
+                            className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                        />
+                    </div>
+
+                    {/* Register Button */}
+                    <div>
+                        <button
+                            type="submit"
+                            className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 }

@@ -5,12 +5,15 @@ import Profile from "./components/Profile"
 import Register from "./components/Register"
 import Cart from "./components/Cart"
 import Navbar from "./components/Navbar"
+import { CartProvider } from "./context/CartContext"; // Import CartProvider
+
 
 
 console.clear()
 function App() {
 
   return (
+
     <BrowserRouter>
       {/*   <nav>
         <Navbar />
@@ -34,6 +37,7 @@ function App() {
       </Routes>
 
     </BrowserRouter>
+
   )
 }
 
